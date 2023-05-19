@@ -27,5 +27,17 @@
         {{ project_form.team_selection }}
         {{ team_form.submit }}
     </form>
+    <h2>Teams</h2>
+    <ul>
+        {% for team in teams %}
+        <li>{{ team.team_name }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Projects</h2>
+    <ul>
+        {% for project in projects %}
+        <li>{{ project.project_name }}</li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

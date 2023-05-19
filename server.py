@@ -14,7 +14,14 @@ def home():
     team_form = TeamForm() # initiates TeamForm that was brought over
     project_form = ProjectForm()
     project_form.update_teams(User.query.get(USER_ID).teams)
-    return render_template("home.html", team_form=team_form, project_form=project_form)
+
+    user = User.query.get(USER_ID)
+    teams = user.teams
+    projects = Project.query.join(Team).filter(Team.user_id == USER_ID).all()
+
+    return render_template("home.html", team_form=team_form, project_form=project_form, teams=teams, projects=projects)
+
+    
 
 
 @app.route("/add-team", methods=["POST"]) 
